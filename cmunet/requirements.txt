@@ -1,0 +1,15 @@
+timm
+catalyst==20.09
+# torch==1.13.0
+opencv-python==4.8.0.74
+# opencv-python==4.5.5.64
+lightning
+albumentations
+ttach
+numpy
+tqdm
+opencv-python
+scipy
+matplotlib
+einops
+addict

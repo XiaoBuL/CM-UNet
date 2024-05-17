@@ -1,0 +1,13 @@
+MODEL:
+  TYPE: vssm
+  NAME: vssm_tiny
+  DROP_PATH_RATE: 0.2
+  # PRETRAIN_CKPT: /root/folder/GeoSeg/vmamba_tiny_e292.pth
+  VSSM:
+    EMBED_DIM: 96
+    # DEPTHS: [ 2, 2, 2, 2 ]
+    DEPTHS: [2, 2, 2, 2]
+    # DEPTHS: [4, 4, 4, 4]
+    # DEPTHS: [8, 8, 8, 8]
+    # DEPTHS: [1, 1, 1, 1]
+
