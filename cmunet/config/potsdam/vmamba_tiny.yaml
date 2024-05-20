@@ -5,7 +5,4 @@ MODEL:
   PRETRAIN_CKPT: /root/folder/GeoSeg/vmamba_tiny_e292.pth
   VSSM:
     EMBED_DIM: 64
-    # EMBED_DIM: 96
     DEPTHS: [ 4, 4, 4, 4]
-    
-    # DEPTHS: [3, 3, 3, 3]
