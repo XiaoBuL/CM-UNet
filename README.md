@@ -1,6 +1,6 @@
 # CM-UNet: Hybrid CNN-Mamba UNet for Remote Sensing Image Semantic Segmentation
 ## Introduction
-Official implementation of the paper [CM-UNet: Hybrid CNN-Mamba UNet for Remote Sensing Image Semantic Segmentation](xxx)
+Official implementation of the paper [CM-UNet: Hybrid CNN-Mamba UNet for Remote Sensing Image Semantic Segmentation](https://arxiv.org/pdf/2405.10530)
 
 ## Datasets
   - [ISPRS Vaihingen and Potsdam](https://www.isprs.org/education/benchmarks/UrbanSemLab/default.aspx) 
