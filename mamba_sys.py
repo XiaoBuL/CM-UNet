@@ -967,27 +967,6 @@ class SpatialAttentionModule(nn.Module):
         x = self.conv1(x)
         return self.sigmoid(x)
 
-# class MSFFA(nn.Module):
-#     def __init__(self, in_channel, out_channel):
-#         super(MSFFA, self).__init__()
-#         self.CAM = ChannelAttentionModule(out_channel)  
-#         self.SAM = SpatialAttentionModule()  
-#         # self.attention_module = nn.MultiheadAttention(out_channel, num_heads=4)
-#         # self.fusion_conv = nn.Sequential(
-#         #     BasicConv(in_channel, out_channel, kernel_size=1, stride=1, relu=True),
-#         #     BasicConv(out_channel, out_channel, kernel_size=3, stride=1, relu=False)
-#         # )
-#         self.fusion_conv = nn.Conv2d(in_channel, out_channel, kernel_size=1, stride=1)  
-
-#     def forward(self, x1, x2, x4):
-        
-#         x_fused = torch.cat([x1, x2, x4], dim=1)
-#         x_fused = self.fusion_conv(x_fused)
-
-#         x_fused = self.CAM(x_fused) * x_fused
-#         x_fused = self.SAM(x_fused) * x_fused
-
-#         return x_fused
 
 
 class FusionConv(nn.Module):
@@ -1031,9 +1010,9 @@ class DownFusion(nn.Module):
         x_fused =  + x_fused
         return x_fused
 
-class MSFFA(nn.Module):
+class MSAA(nn.Module):
     def __init__(self, in_channels, out_channels):
-        super(MSFFA, self).__init__()
+        super(MSAA, self).__init__()
         self.fusion_conv = FusionConv(in_channels, out_channels)
 
     def forward(self, x1, x2, x4, last=False):
@@ -1044,20 +1023,6 @@ class MSFFA(nn.Module):
         x_fused = self.fusion_conv(x1, x2, x4)
         return x_fused
 
-
-# class MSFFA(nn.Module):
-#     def __init__(self, in_channel_1, in_channel_2, in_channel_3, out_channel, last=False, middle=False):
-#         super(MSFFA, self).__init__()
-
-#         self.fusion_1x2 = DownFusion(in_channel_1 + in_channel_2, out_channel)
-#         self.fusion_1x4 = DownFusion(in_channel_1 + in_channel_3, out_channel)
-
-#     def forward(self, x1, x2, x4, last=False):
-#         # x2 是从低到高，x4是从高到低的设计，x2传递语义信息，x4传递边缘问题特征补充
-#         x_1_2_fusion = self.fusion_1x2(x1, x2)
-#         x_1_4_fusion = self.fusion_1x4(x1, x4)
-#         x_fused = x_1_2_fusion + x_1_4_fusion
-#         return x_fused
 
 
 class VSSM(nn.Module):
@@ -1142,9 +1107,9 @@ class VSSM(nn.Module):
 
         hidden_dim = int(base_dims // 4)
         self.AFFs = nn.ModuleList([            
-            MSFFA(hidden_dim * 7, base_dims),
-            MSFFA(hidden_dim * 7, base_dims * 2),
-            MSFFA(hidden_dim * 7, base_dims * 4),
+            MSAA(hidden_dim * 7, base_dims),
+            MSAA(hidden_dim * 7, base_dims * 2),
+            MSAA(hidden_dim * 7, base_dims * 4),
         ])
         
         
